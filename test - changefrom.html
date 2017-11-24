@@ -1,0 +1,45 @@
+<script  type="text/javascript">
+function IsFormChanged(el,radios) {  
+    var isChanged="";  
+    var form = document.getElementById(el);  
+    for (var i = 0; i < form.elements.length; i++) {  
+        var element = form.elements[i];  
+        var type = element.type; 
+        switch(type){
+            case "text":
+            case "hidden":
+            case "textarea":
+            case "button":
+                isChanged += (element.value != element.defaultValue)?isChanged.length==0?element.name+"="+element.value:"&"+element.name+"="+element.value:"";
+                break;
+            case "checkbox":
+                isChanged += (element.checked != element.defaultChecked)?isChanged.length==0?element.name+"="+element.value:"&"+element.name+"="+element.value:"";
+                break;
+            case "select-one":
+            case "select-multiple": 
+                for (var j = 0; j < element.options.length; j++) {
+                    isChanged += (element.options[j].selected != element.options[j].defaultSelected)?isChanged.length==0?element.name+"="+element.value:"&"+element.name+"="+element.value:"";  
+                }
+                break;  
+        } 
+    }   
+    var radiolist=radios.split(',');
+    for(var j=0;j<radiolist.length;j++){
+        var myRadio=document.getElementsByName(radiolist[j]);
+        for(var k=0;k<myRadio.length;k++){
+            isChanged += (myRadio[k].checked && !myRadio[k].defaultChecked)?isChanged.length==0?myRadio[k].name+"="+myRadio[k].value:"&"+myRadio[k].name+"="+myRadio[k].value:"";
+        }
+    }
+    alert(isChanged);  
+} 
+</script>
+<form id="chageform">
+    <input type="checkbox" name="myBox" value="1"/>
+    <input type="checkbox" name="myBox" value="2"/>
+    <input type="checkbox" name="myBox" value="3"/><br />
+    <input type="radio" name="myRadio" checked="checked" value="1"/>
+    <input type="radio" name="myRadio" value="2"/><br />
+    <input type="radio" name="myRadio2" value="1"/>
+    <input type="radio" name="myRadio2" checked="checked" value="2"/>
+<input type="button" value="检测" onclick="IsFormChanged('chageform','myRadio,myRadio2')" />
+</form>

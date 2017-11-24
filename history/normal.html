@@ -1,0 +1,19 @@
+<button onclick="logout()">logout</button>
+<script type="text/javascript" src="../jquery/jquery.js"></script>
+<script>
+function logout(){
+    // window.open("logout.html");
+    // console.log(window.opener=window)
+    // window.close();
+    // console.log(Math.random());
+    // location.href="logout.html"
+    //history.replaceState({},"",'login.html');
+    // window.onload=function(){
+    //     window.history.forward(1);
+    // }
+    document.location.assign('logout.html');
+
+}
+//window.history.forward(1);
+console.log(document.referrer);
+</script>

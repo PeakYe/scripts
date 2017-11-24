@@ -1,0 +1,124 @@
+*,button, input, select, textarea,pre {
+/* 	font-family: "Raleway", "Classic Grotesque W01", "Avenir Next", */
+/* 		"Segoe UI", "Helvetica Neue", Arial, "Hiragino Sans GB", "PingFang SC", */
+/* 		"Heiti SC", "Microsoft YaHei UI", "Microsoft YaHei", "Source Han Sans", */
+/* 		sans-serif; */
+/* 	font-family:-apple-system,Helvetica,'Hiragino Sans GB W3','Microsoft YaHei',arial,sans-serif; */
+	font-weight: 400;
+/* 	line-height: 1.7; */
+	outline: none;
+}
+
+*::selection {
+    color:#FFFFFF;
+    background-color:#E84893;
+    text-shadow:none;
+}
+*::-moz-selection {
+    color:#FFFFFF;
+    background-color:#E84893;
+    text-shadow:none;
+}
+
+.scroll-default::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	border-radius: 10px;
+	background-color: #F5F5F5;
+}
+
+.scroll-default::-webkit-scrollbar
+{
+	width: 12px;
+	background-color: #F5F5F5;
+}
+
+.scroll-default::-webkit-scrollbar-thumb
+{
+	border-radius: 10px;
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+	background-color: #999;
+}
+
+
+.scroll-style-1::-webkit-scrollbar-track,.ace_scrollbar-v::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.3);
+	border-radius: 7px;
+	background-color: #F5F5F5;
+}
+
+.scroll-style-1::-webkit-scrollbar,.ace_scrollbar-v::-webkit-scrollbar
+{
+	width: 10px;
+	background-color: #F5F5F5;
+}
+
+.scroll-style-1::-webkit-scrollbar-thumb,.ace_scrollbar-v::-webkit-scrollbar-thumb
+{
+	border-radius: 7px;
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	background-color: #ccc;
+}
+
+
+.scroll-style-thin::-webkit-scrollbar-track,.ace_scrollbar-v::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 2px rgba(0,0,0,0.3);
+	border-radius: 3px;
+	background-color: #F5F5F5;
+}
+
+.scroll-style-thin::-webkit-scrollbar,.ace_scrollbar-v::-webkit-scrollbar
+{
+	width: 5px;
+	background-color: #F5F5F5;
+}
+
+.scroll-style-thin::-webkit-scrollbar-thumb,.ace_scrollbar-v::-webkit-scrollbar-thumb
+{
+	border-radius: 3px;
+	-webkit-box-shadow: inset 0 0 3px rgba(0,0,0,0.3);
+	background-color: #ccc;
+}
+
+body{
+	/*background-color: #f9f9f9;*/
+}
+
+
+body::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	border-radius: 10px;
+	background-color: #F5F5F5;
+}
+
+body::-webkit-scrollbar
+{
+	width: 12px;
+	background-color: #F5F5F5;
+}
+
+body::-webkit-scrollbar-thumb
+{
+	border-radius: 10px;
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+	background-color: #aaa;
+}
+
+.ellipsis{
+	overflow: hidden;
+	text-overflow:ellipsis;
+	white-space: nowrap;
+} 
+
+/*h1,h2,h3,h4,h5,h6{
+	font-weight: bold;
+}*/
+
+/*h1:before{
+	content:' ' ;
+	width: 2px;
+	background: #ccc;
+}*/

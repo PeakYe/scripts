@@ -1,0 +1,65 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.css" />
+<link rel="stylesheet" type="text/css" href="bootstrap/css/daterangepicker.css">
+<script src="require.js"></script>
+<script src="config.js"></script>
+
+<style>
+	.unable{
+		color:red !important;
+		background-color: red;
+	}
+</style>
+</head>
+<body>
+	<input type="text" id="datepicker">
+	<input type="text" id="datepicker2">
+	<script>
+	requirejs(['jquery','moment','holiday','daterangepciker'],function($,moment){
+		// console.log(holiday.isHoliday('2013-01-01'))
+
+		$(document).ready(function() {
+
+			$('#datepicker').daterangepicker(
+			{
+			    locale: {
+			      format: 'YYYY-MM-DD'
+			    },
+			    startDate: '2017-09-20',
+			    endDate: '2017-10-31',
+			    "dateLimit": {
+			        "days": 15
+			    },
+			    isCustomDate: function(d){
+			    	if(holiday.isHoliday(d.format('YYYY-MM-DD'))){
+			    		return "unable";	    	
+			    	}
+			    },
+			    isInvalidDate: function(d,scc){
+			    	console.log(d)
+			    	// console.log(d)
+			    	if(holiday.isHoliday(d.format('YYYY-MM-DD'))){
+			    		return true;	    	
+			    	}
+
+			    	//不能少于7个工作日
+			   //  	if(holiday.workDays(start.format('YYYY-MM-DD')<7){
+			   //  		this.endDate='2017-10-12';
+						// // console.log(picker.endDate.format('YYYY-MM-DD'));
+			   //  	}
+			    	return false;
+			    },
+			    onSelect:function(a,b){
+			    	console.log(a)
+			    }
+			}, 
+			function(start, end, label) {
+			    console.log(holiday.workDays(start.format('YYYY-MM-DD'),end.format('YYYY-MM-DD')));
+			});
+
+		})
+	})
+	</script>
+</body> 	
+</html>

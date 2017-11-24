@@ -1,0 +1,17 @@
+<html>
+<script src="../jquery/jquery-3.2.1.min.js"></script>
+<script src="build/pdf.js"></script>
+<script src="pdfviewer.js"></script>
+<body class="pdfview-contain">
+</body>
+<script>
+
+	console.log(PDFJS);
+	PDFViewer.createPDFDoc('b.pdf',function(pdfdoc){
+		var drawer=PDFViewer.createPdfDrawer('body',pdfdoc);
+		drawer.toPage(100);
+
+	})
+	
+</script>
+</html>

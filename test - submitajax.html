@@ -1,0 +1,31 @@
+<script src="jquery/jquery-3.2.1.min.js"></script>
+<script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/jquery.validate.min.js"></script>
+
+<form id="changeform" method="post" action="#">
+    <input id="test" type="text" name="test" minlength="2" required><br>
+    <button type="" onclick="">submit</button>
+</form>
+<script>
+  
+   $.ajaxSetup({
+    beforeSend:function(xhr,param){
+        console.log(this)
+        this.data='_params='+encodeURIComponent(this.data);
+
+        return true;
+    }
+   })
+
+   
+   $.ajax({
+    url:"test.json",
+    method:'post',
+    data:{
+        aa:2,
+        bb:3
+    },
+    success:function(data){
+
+    }
+   })
+</script>

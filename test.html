@@ -1,0 +1,67 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.css" />
+<link rel="stylesheet" type="text/css" href="bootstrap/css/daterangepicker.css">
+<link rel="stylesheet" type="text/css" href="bootstrap-treeview/css/bootstrap-treeview.css">
+<script src="jquery/jquery-3.2.1.min.js"></script>
+<script src="jquery/jquery-3.2.1.min.js"></script>
+<script src="bootstrap/js/bootstrap.min.js"></script>
+<script src="bootstrap-treeview\js\bootstrap-treeview.js"></script>
+
+<style>
+	
+</style>
+</head>
+<body>
+	<div id="tree"></div>
+	<button id="add">add</button><button id="delete">delete</button>
+	<script>
+	var tree = [
+	  {
+	    text: "Parent 1",
+	    nodes: [
+	      {
+	        text: "Child 1",
+	        nodes: [
+	          {
+	            text: "Grandchild 1"
+	          },
+	          {
+	            text: "Grandchild 2"
+	          }
+	        ]
+	      },
+	      {
+	        text: "Child 2"
+	      }
+	    ]
+	  },
+	  {
+	    text: "Parent 2"
+	  },
+	  {
+	    text: "Parent 3"
+	  },
+	  {
+	    text: "Parent 4"
+	  },
+	  {
+	    text: "Parent 5"
+	  }
+	];
+
+	tree.push({text:"parent777"})
+	$('#tree').treeview({data: tree});
+
+	
+
+	$('#add').click(function(){
+		tree[5].nodes=[{text:'new nodes'}]
+		$('#tree').treeview({data: tree});
+	})
+
+	
+	$('#tree').treeview({data: tree});
+	</script>
+</body> 	
+</html>

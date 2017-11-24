@@ -1,0 +1,36 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.css" />
+<link rel="stylesheet" type="text/css" href="bootstrap/css/daterangepicker.css">
+<link rel="stylesheet" type="text/css" href="bootstrap-fileview/bootstrap-fileview.css">
+<script src="jquery/jquery-3.2.1.min.js"></script>
+<!-- <script src="jquery/jquery-3.2.1.min.js"></script> -->
+<!-- <script src="bootstrap/js/bootstrap.min.js"></script> -->
+<script src="bootstrap-fileview/bootstrap-fileview.js"></script>
+
+<style>
+	body{
+		margin: 0px;
+	}
+</style>
+</head>
+<body>
+	<div id="tree"  class="file-view">
+		<ul>
+			<li id="1">1</li>
+			<li id="3">3</li>
+			<li id="2">2</li>
+			<li id="4">4</li>
+		</ul>
+
+	</div>
+	<script>
+		$('#tree li').sort(function(a,b){
+			var va=a.getAttribute("id");
+			var vb=b.getAttribute("id");
+			console.log(va-vb);
+			return va-vb;
+		}).detach().appendTo($('#tree ul'));
+	</script>
+</body> 	
+</html>

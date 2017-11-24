@@ -1,0 +1,107 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<link rel="stylesheet" href="http://localhost/javascripts/layer/skin/default/layer.css">
+	<link rel="stylesheet" href="http://localhost/javascripts/bootstrap/css/bootstrap.min.css">
+
+	<script src="http://localhost/javascripts/require.js"></script>
+	<script type="text/javascript" src="http://localhost/javascripts/config.js"></script>
+	<!-- <script src="http://localhost/javascripts/jquery/jquery-3.2.1.min.js" ></script> -->
+	<!-- <script src="http://localhost/javascripts/layer/layer.js" ></script> -->
+</head>
+
+<body >
+	
+	<nav class="navbar navbar-default" role="navigation">
+		<div class="container">
+		    <div class="container-fluid">
+		    <div class="navbar-header">
+		        <a class="navbar-brand" href="#">NOBIBI</a>
+		    </div>
+		    <div>
+		        <ul class="nav navbar-nav">
+		            <!-- <li class="active"><a href="#">iOS</a></li>
+		            <li><a href="#">SVN</a></li>
+		            <li class="dropdown">
+		                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+		                    Java
+		                    <b class="caret"></b>
+		                </a>
+		                <ul class="dropdown-menu">
+		                    <li><a href="#">jmeter</a></li>
+		                    <li><a href="#">EJB</a></li>
+		                    <li><a href="#">Jasper Report</a></li>
+		                    <li class="divider"></li>
+		                    <li><a href="#">分离的链接</a></li>
+		                    <li class="divider"></li>
+		                    <li><a href="#">另一个分离的链接</a></li>
+		                </ul>
+		            </li> -->
+		        </ul>
+		    </div>
+		    </div>
+	    </div>
+	</nav>
+
+	<div class="container">
+		<div class="col-md-7 col-sm-12"></div>
+		<div class="col-md-3 col-sm-12 col-xs-12">
+			<form class="" role="form">
+				<div class="input-group">
+		            <span class="input-group-addon">邮箱</span>
+		            <input type="text" class="form-control" placeholder="email" id="email">
+		        </div>
+		        <br>
+		        <div class="input-group">
+		            <span class="input-group-addon">昵称</span>
+		            <input type="text" class="form-control" placeholder="name" id="name">
+		        </div>
+		        <br>
+		        <div class="input-group">
+		            <span class="input-group-addon">密码</span>
+		            <input type="text" class="form-control" placeholder="password" id="pwd">
+		        </div>
+		        <br>
+		        <input id="login" type="button" class="btn btn-default" value="Sign In"></input>
+		    </form>
+		</div>
+	</div>
+
+	<script type="text/javascript">
+		require(['jquery','c'],function($,c){
+			
+
+			$('#login').click(function(){
+				var email=$('#email').val();
+				if(email==null || email==''){
+					$('#email').focus();
+					return;
+				}
+				var name=$('#name').val();
+				if(name==null || name==''){
+					$('#name').focus();
+					return;
+				}
+				var pwd=$('#pwd').val();
+				if(pwd==null || pwd==''){
+					$('#pwd').focus();
+					return;
+				}
+				c.ajax({
+					url:'user/register',
+					data:{
+						name:name,
+						pwd:pwd,
+						email:email
+					},
+					success:function(r){
+						layer.alert(r.data)
+					}
+				})
+			})
+		})
+	</script>
+</body>
+</html>
