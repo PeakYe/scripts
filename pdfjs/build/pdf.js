@@ -8970,7 +8970,7 @@
    PDFJS.workerSrc = PDFJS.workerSrc === undefined ? null : PDFJS.workerSrc;
    PDFJS.disableRange = PDFJS.disableRange === undefined ? false : PDFJS.disableRange;
    PDFJS.disableStream = PDFJS.disableStream === undefined ? false : PDFJS.disableStream;
-   PDFJS.disableAutoFetch = PDFJS.disableAutoFetch === undefined ? false : PDFJS.disableAutoFetch;
+   PDFJS.disableAutoFetch = PDFJS.disableAutoFetch === undefined ? true : PDFJS.disableAutoFetch;
    PDFJS.pdfBug = PDFJS.pdfBug === undefined ? false : PDFJS.pdfBug;
    PDFJS.postMessageTransfers = PDFJS.postMessageTransfers === undefined ? true : PDFJS.postMessageTransfers;
    PDFJS.disableCreateObjectURL = PDFJS.disableCreateObjectURL === undefined ? false : PDFJS.disableCreateObjectURL;

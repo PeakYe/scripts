@@ -2,16 +2,19 @@
 <script src="../jquery/jquery-3.2.1.min.js"></script>
 <script src="build/pdf.js"></script>
 <script src="pdfviewer.js"></script>
+<input type="text" id="page">
 <body class="pdfview-contain">
 </body>
 <script>
 
 	console.log(PDFJS);
-	PDFViewer.createPDFDoc('b.pdf',function(pdfdoc){
+	PDFViewer.createPDFDoc('http://localhost/scripts/pdfjs/test.pdf',function(pdfdoc){
 		var drawer=PDFViewer.createPdfDrawer('body',pdfdoc);
-		drawer.toPage(100);
+		drawer.toPage(1);
+		$('#page').change(function(){
+			drawer.toPage(this.value)
+		})
 
 	})
-	
 </script>
 </html>

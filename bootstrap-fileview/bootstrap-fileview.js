@@ -12,7 +12,8 @@
 			<p class="sortlist"><i id="common-sort" class="glyphicon glyphicon-sort-by-alphabet"></i> <i id="common-sort" class="glyphicon glyphicon-sort"></i></p>\
 			</div>',
 		// <li><a href="#">Home</a></li><li><a href="#">2013</a></li><li class="active">十一月</li>
-		viewSubNav:'<ol class="breadcrumb ellipsis">...</ol>',
+		viewSubNav:'<ol class="breadcrumb">/</ol>',
+		viewSubNavHome:'<li ><i class="glyphicon glyphicon-home"></i></li>',
 		viewSubNavLi:'<li></li>',
 		subUl:'<ul class="sub-menu-ul scroll-style-thin sbar1"></ul>',
 		subLi:'<li class="sub-menu-li"></li>',
@@ -22,6 +23,7 @@
 			html:{
 				contain:null,
 				mainUl:null,
+				viewSubNavHome:null
 			},
 			folder:{},
 			eventBus:{},
@@ -39,9 +41,7 @@
 				var mainul=this.html.mainUl=$(template.mainUl);
 				viewMain.append(mainul);
 				for(var i in args.mainMenu){
-					var $mli=$(template.mainLi).attr("main-menu-id",i).html(args.mainMenu[i].text).click(function(){
-						that.showMenu($(this).attr('main-menu-id'));
-					})
+					var $mli=$(template.mainLi).attr("main-menu-id",i).html(args.mainMenu[i].text);
 					mainul.append($mli);
 				}
 
@@ -73,6 +73,12 @@
 				var viewSubNav=$(template.viewSubNav);
 				viewSub.append(viewSubNav);
 				this.html.viewSubNav=viewSubNav;
+				var  viewSubNavHome=$(template.viewSubNavHome);
+				// viewSubNavHome.click(function(){
+				// 	//回到根目录
+				// 	that.showMenu(0);
+				// });
+				this.html.viewSubNavHome=viewSubNavHome;
 
 				//菜单
 				var subUl=this.html.subUl=$(template.subUl);
@@ -87,6 +93,8 @@
 				this.eventBus.onClickMenu=args.onClickMenu;
 				this.eventBus.onShowMenu=args.onShowMenu;
 				this.eventBus.onDeleteMenu=args.onDeleteMenu;
+
+
 
 				return this;
 			},
@@ -104,14 +112,9 @@
 				var that=this;
 				if(args.parent==null){
 					
-					var m=$(template.mainLi).html(args.text).attr('main-menu-id',args.id).click(function(){
-						that.showMenu(args.id);
-					});
-					this.html.mainUl.append(m);
-					if(this.eventBus.onCreateMenu){
-						this.eventBus.onCreateMenu(m);
-					}
-				}else{
+					args.parent=0;
+				}
+				{
 					var isfolder=args.isfolder==null?true:args.isfolder;
 					var content=(args.prefix?args.prefix:'<i class="glyphicon glyphicon-folder-close"></i> ')+args.text+(args.suffix?args.suffix:'');
 					var sub=$(template.subLi).html(content).attr('sub-menu-id',args.id).attr('isfolder',isfolder).attr('title',args.text);
@@ -152,11 +155,8 @@
 				}
 				this.html.subUl.attr('sub-menu-id',parentId);
 				var folder=this.folder[parentId];
-				if(folder==null){
-					this.html.viewSubNav.html('/');
-				}else{
-					this.html.viewSubNav.html('');
-				}
+				localStorage.setItem('currentFolder',parentId);
+				this.html.viewSubNav.html('');
 				while(folder!=null){
 					var item=$(template.viewSubNavLi).append(folder.menuData.text)
 						.attr('folder-id',folder.menuData.id).click(function(){
@@ -165,8 +165,11 @@
 					this.html.viewSubNav.prepend(item);
 					folder=this.folder[folder.menuData.parent];
 				}
+				this.html.viewSubNav.prepend(this.html.viewSubNavHome.click(function(){
+					//回到根目录
+					that.showMenu(0);
+				}));
 				//this.sortMenu(parentId);
-				localStorage.setItem('currentFolder',parentId);
 			},
 			deleteMenu:function(id,callback){
 				var deled=this.folder[id].menuData;
@@ -203,9 +206,11 @@
 				var currentFolder=localStorage.getItem('currentFolder');
 				if(currentFolder){
 					this.showMenu(currentFolder);
-					return true;
+					// return true;
+				}else{
+					this.showMenu(0);
 				}
-				return false;
+				return true;
 			},
 			queryMenu:function(query){
 				if(query==null||query.trim()==''){
@@ -225,7 +230,7 @@
 					var querys= query.split('');
 					var pattern='';
 					for(var i in querys){
-						pattern+=".*"+querys[i]+"{1}";
+						pattern+=".*"+querys[i].toLowCase()+"{1}";
 					}
 					var exp=new RegExp(pattern);
 					for(var i in this.folder){
@@ -238,6 +243,15 @@
 						}
 						
 					}
+				}
+			},
+			findMenu:function(id){
+				for(var i in this.folder){
+					var f=this.folder[i];
+					if(f.menuData.id==id){
+						return f;
+					}
+					
 				}
 			},
 			isChinese:  function (str) {
@@ -266,10 +280,9 @@
 	       		});
 	       		this.html.viewSub.append($('<div class="treeview-stack"></div>').append(close).append(list));
 	       		this.html.subUl.find('li').on("dragstart",function(e){  
-	       			console.log(e.target)
+	       			//console.log(e.target)
 	                e.originalEvent.dataTransfer.setData("submenuid",$(e.target).attr('sub-menu-id'));  
 	            }).attr("draggable","true");  
-
 	            //允许放入  
 	            list.on("dragover",function(e){  
 	                e.originalEvent.preventDefault();  

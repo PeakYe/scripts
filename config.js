@@ -2,7 +2,7 @@
 	var cdn="http://47.94.106.96:10002/scripts/";
 	require.config({
 		// baseUrl : "http://47.94.106.96:10002/scripts/",
-		baseUrl : "http://localhost/javascripts/",
+		baseUrl : "http://localhost/scripts/",
 	    paths : {
 	        "jquery" : ["jquery/jquery-3.2.1.min"],
 	        "bootstrap": ["bootstrap/js/bootstrap",cdn+"bootstrap/js/bootstrap"],

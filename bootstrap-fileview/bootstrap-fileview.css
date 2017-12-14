@@ -2,7 +2,7 @@
 	height: 100%;
 	width: auto;
 	float: left;
-	width:374px;
+	width: 314px;
 }
 .file-view-main{
 	text-align: center;
@@ -18,9 +18,9 @@
 
 .file-view-main .main-head{
 	padding-top:30px;
-	height: 180px;
+	/*height: 180px;*/
 	align-items: center;
-	min-width: 146px;
+	/*min-width: 146px;*/
 	/*overflow: hidden;*/
 	/*display: -webkit-flex;
 	justify-content:center; display: -webkit-flex;*/
@@ -128,12 +128,17 @@
 
 .file-view-sub .breadcrumb{
 	display: inline-block; width: 100%;
+	overflow: hidden;
+	text-overflow:ellipsis;
+	white-space: nowrap;
 }
 .file-view-sub .breadcrumb:hover{
 	margin-left: 0px;
 	margin-bottom: 0px;
+	overflow: inherit;
 	display: inline-block;z-index: 1000000;
 	position: relative;
+	width: auto;
 }
 
 
@@ -157,6 +162,9 @@
 	text-overflow:ellipsis;
 	white-space: nowrap;
 }
+.file-view-sub ul .sub-menu-li .glyphicon {
+	color:#333333;
+}
 .file-view-sub ul li:hover{
 	background-color: #bbb;
 }
@@ -175,7 +183,7 @@
 	z-index: 10001;
 	float: right;
 	font-size: 20px;
-	margin-top: -5px;
+	margin-top: -28px;
 	margin-right: -230px;
 	background-color: #fff;
 	border-radius: 50%;

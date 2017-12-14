@@ -94,7 +94,7 @@
     function pdfDrawer(c,pdfDoc){
         scrollEvent()($(c)[0],"mousewheel", function(e){
             //if (e.delta < 0) { alert("鼠标向上滚了！"); }
-            console.log(e);
+            //console.log(e);
         });
         return {
             container:$(c),
@@ -134,8 +134,8 @@
 
     return {
         createPDFDoc:function (url,callback){
-            PDFJS.getDocument(url).then(function (pdfDoc_) {
-                callback(pdfDoc_)
+            PDFJS.getDocument({url:url,source:{disableAutoFetch:true}}).then(function (pdfDoc_) {
+                callback(pdfDoc_);
             });
         },
         createPdfDrawer:function(canvas,pdfdoc){
