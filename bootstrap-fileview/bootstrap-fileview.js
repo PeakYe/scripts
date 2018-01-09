@@ -230,7 +230,7 @@
 					var querys= query.split('');
 					var pattern='';
 					for(var i in querys){
-						pattern+=".*"+querys[i].toLowCase()+"{1}";
+						pattern+=".*"+querys[i].toLowerCase()+"{1}";
 					}
 					var exp=new RegExp(pattern);
 					for(var i in this.folder){
