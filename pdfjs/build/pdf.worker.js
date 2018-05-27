@@ -48351,7 +48351,7 @@
      }
      data.readOnly = this.hasFieldFlag(AnnotationFieldFlag.READONLY);
      if (data.fieldType === 'Sig') {
-      this.setFlags(AnnotationFlag.HIDDEN);
+      // this.setFlags(AnnotationFlag.HIDDEN);
      }
     }
     Util.inherit(WidgetAnnotation, Annotation, {
